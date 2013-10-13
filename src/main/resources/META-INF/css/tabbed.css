@@ -1,0 +1,58 @@
+body {
+	overflow-x: hidden; 
+}
+.bdft {
+   text-align:center!important;
+}
+.viewmode-value {
+   color: #000!important;
+}
+.yui-panel-container div {
+   overflow-x: hidden!important; 
+}
+}
+.form-fields div {
+   overflow-x: hidden!important; 
+}
+.share-form .form-container .form-fields {
+padding: 1em 1em 0 !important;
+width: 100%;
+}
+.help-text {
+	font-size: 8pt!important;
+}
+.tab_container *{
+	float:left;
+	background:#FFFFFF;
+}
+#basic-accordian{
+	border:0px;
+}
+.accordion_headings{
+	padding:3px;
+	margin: 1px;
+	background:#E3EBEC;
+	color:#515D6B;
+	border:1px solid #FFF;
+	cursor:pointer;
+	font-weight:bold;
+}
+.accordion_headings:hover{
+	background:#C4C5C5;
+}
+.accordion_child{
+	padding:1px;
+}
+.header_highlight{
+	background:#C4C5C5;
+}
+.set-bordered-panel-heading {
+	background-color: transparent!important;
+	color: #58ACFA!important;
+	padding: 0.3em 0.6em;
+	text-align: left;
+}
+.set-bordered-panel-body {
+	padding: 1em 0.2em 0 0.6em;
+	border: 1px solid #58ACFA!important;
+}
