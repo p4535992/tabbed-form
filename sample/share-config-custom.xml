@@ -1,0 +1,214 @@
+<alfresco-config>
+   
+   <!-- Repository Library config section -->
+   <config evaluator="string-compare" condition="RepositoryLibrary" replace="true">
+      <!--
+         Whether the link to the Repository Library appears in the header component or not.
+      -->
+      <visible>true</visible>
+   </config>
+
+   <config evaluator="string-compare" condition="Remote">
+      <remote>
+         <endpoint>
+            <id>alfresco-noauth</id>
+            <name>Alfresco - unauthenticated access</name>
+            <description>Access to Alfresco Repository WebScripts that do not require authentication</description>
+            <connector-id>alfresco</connector-id>
+            <endpoint-url>http://localhost:8080/alfresco/s</endpoint-url>
+            <identity>none</identity>
+         </endpoint>
+
+         <endpoint>
+            <id>alfresco</id>
+            <name>Alfresco - user access</name>
+            <description>Access to Alfresco Repository WebScripts that require user authentication</description>
+            <connector-id>alfresco</connector-id>
+            <endpoint-url>http://localhost:8080/alfresco/s</endpoint-url>
+            <identity>user</identity>
+         </endpoint>
+
+         <endpoint>
+            <id>alfresco-feed</id>
+            <name>Alfresco Feed</name>
+            <description>Alfresco Feed - supports basic HTTP authentication via the EndPointProxyServlet</description>
+            <connector-id>http</connector-id>
+            <endpoint-url>http://localhost:8080/alfresco/s</endpoint-url>
+            <basic-auth>true</basic-auth>
+            <identity>user</identity>
+         </endpoint>
+         
+         <endpoint>
+            <id>activiti-admin</id>
+            <name>Activiti Admin UI - user access</name>
+            <description>Access to Activiti Admin UI, that requires user authentication</description>
+            <connector-id>activiti-admin-connector</connector-id>
+            <endpoint-url>http://localhost:8080/alfresco/activiti-admin</endpoint-url>
+            <identity>user</identity>
+         </endpoint>
+      </remote>
+   </config>
+
+    <!-- cm:content type (existing nodes) -->
+   <config evaluator="node-type" condition="cm:content" replace="true">
+      <forms>
+         <!-- Default form configuration for the cm:content type -->
+         <form>
+            <field-visibility>
+               <show id="cm:name" />
+               <show id="cm:title" force="true" />
+               <show id="cm:description" force="true" />
+               <show id="mimetype" />
+
+               <show id="cm:creator"/>
+               <show id="cm:created" />
+               <show id="cm:modifier" />
+               <show id="cm:modified"  />
+
+                <!-- cm:dublincore aspect -->
+               <show id="cm:publisher"/>
+               <show id="cm:contributor"/>
+               <show id="cm:type"/>
+               <show id="cm:identifier"/>
+               <show id="cm:dcsource"/>
+               <show id="cm:coverage"/>
+               <show id="cm:rights"/>
+               <show id="cm:subject"/>
+
+               <!-- cm:emailed aspect -->
+               <show id="cm:originator" />
+               <show id="cm:addressee" />
+               <show id="cm:addressees" />
+               <show id="cm:sentdate" />
+               <show id="cm:subjectline" />
+
+                <!-- cm:effectivity aspect -->
+               <show id="cm:from"/>
+               <show id="cm:to"/>
+            </field-visibility>
+            <edit-form template="tabbed.ftl" />
+            <appearance>
+               <set id="Zgeneric" label="Generic" />
+               <set id="Zextra" label="Extra" />
+
+               <set id="generic1" parent="Zgeneric" label="" />
+
+               <set id="extra1" parent="Zextra" label="" />
+               <set id="extra2" parent="Zextra" label="" />
+
+               <!-- generic group -->
+               <set id="Ggeneric" parent="generic1" label="Generic"/>
+               <!-- dates group -->
+               <set id="Gdates" parent="generic1" label="Control"/>
+                <!-- dublin group -->
+               <set id="Gdublin" parent="extra1" label="Dublin"/>
+                <!-- emailed group -->
+               <set id="Gemailed" parent="extra2" label="Emailed"/>
+                <!-- effectivity group -->
+               <set id="Geffectivity" parent="extra2" label="Effectivity"/>
+
+               <!-- name -->
+               <set id="110Ggeneric-0-0" parent="Ggeneric"/>
+               <!-- mimetype -->
+               <set id="110Ggeneric-0-1" parent="Ggeneric"/>
+                <!-- description -->
+               <set id="121Ggeneric-0-2" parent="Ggeneric"/>
+               <!-- title -->
+               <set id="211Ggeneric-1-0" parent="Ggeneric"/>
+
+               <!-- creator -->
+               <set id="110Gdates-0-0" parent="Gdates"/>
+                <!-- modifier -->
+               <set id="111Gdates-0-1" parent="Gdates"/>
+               <!-- created -->
+               <set id="110Gdates-1-0" parent="Gdates"/>
+               <!-- modified -->
+               <set id="111Gdates-1-1" parent="Gdates"/>
+
+               <!-- publisher -->
+               <set id="111Gdublin-0-0" parent="Gdublin"/>
+               <!-- contributor -->
+               <set id="111Gdublin-1-0" parent="Gdublin"/>
+                <!-- type -->
+               <set id="111Gdublin-2-0" parent="Gdublin"/> 
+               <!-- identifier -->
+               <set id="111Gdublin-3-0" parent="Gdublin"/>
+               <!-- dcsource -->
+               <set id="111Gdublin-4-0" parent="Gdublin"/>
+                <!-- coverage -->
+               <set id="111Gdublin-5-0" parent="Gdublin"/>
+               <!-- rights -->
+               <set id="111Gdublin-6-0" parent="Gdublin"/>
+                <!-- subject -->
+               <set id="111Gdublin-7-0" parent="Gdublin"/>
+
+               <!-- originator -->
+               <set id="111Gemailed-0-0" parent="Gemailed"/>
+               <!-- addressee -->
+               <set id="111Gemailed-1-0" parent="Gemailed"/>
+                <!-- addressees -->
+               <set id="111Gemailed-2-0" parent="Gemailed"/> 
+               <!-- sentdate -->
+               <set id="111Gemailed-3-0" parent="Gemailed"/>
+               <!-- subjectline -->
+               <set id="111Gemailed-4-0" parent="Gemailed"/>
+
+               <!-- from -->
+               <set id="111Geffectivity-0-0" parent="Geffectivity"/>
+               <!-- to -->
+               <set id="111Geffectivity-1-0" parent="Geffectivity"/>
+
+
+
+               <field id="cm:name" set="110Ggeneric-0-0">
+                   <control>
+                       <control-param name="style">width: 150px;</control-param>
+                   </control>
+               </field>
+               <field id="mimetype"  set="110Ggeneric-0-1">
+                  <control template="/org/alfresco/components/form/controls/mimetype.ftl">
+                       <control-param name="style">width: 200px;</control-param>
+                  </control>
+               </field>
+               <field id="cm:description"  set="121Ggeneric-0-2">
+                  <control>
+                     <control-param name="activateLinks">true</control-param>
+                       <control-param name="style">width: 250px;</control-param>
+                       <control-param name="rows">5</control-param>
+                  </control>
+               </field>
+               <field id="cm:title" set="211Ggeneric-1-0">
+                   <control  template="/org/alfresco/components/form/controls/textfield.ftl" >
+                       <control-param name="style">width: 450px;</control-param>
+                   </control>
+               </field>
+
+               <field id="cm:creator" set="110Gdates-0-0" />
+               <field id="cm:modifier" set="111Gdates-0-1" />
+               <field id="cm:created" set="110Gdates-1-0" />
+               <field id="cm:modified" set="111Gdates-1-1" />
+
+               <field id="cm:publisher" set="111Gdublin-0-0" />
+               <field id="cm:contributor" set="111Gdublin-1-0" />
+               <field id="cm:type" set="111Gdublin-2-0" />
+               <field id="cm:identifier" set="111Gdublin-3-0" />
+               <field id="cm:dcsource" set="111Gdublin-4-0" />
+               <field id="cm:coverage" set="111Gdublin-5-0" />
+               <field id="cm:rights" set="111Gdublin-6-0" />
+               <field id="cm:subject" set="111Gdublin-7-0" />
+
+               <field id="cm:originator" set="111Gemailed-0-0" />
+               <field id="cm:addressee" set="111Gemailed-1-0" />
+               <field id="cm:addressees" set="111Gemailed-2-0" />
+               <field id="cm:sentdate" set="111Gemailed-3-0" />
+               <field id="cm:subjectline" set="111Gemailed-4-0" />
+
+               <field id="cm:from" set="111Geffectivity-0-0" />
+               <field id="cm:to" set="111Geffectivity-1-0" />
+
+            </appearance>
+         </form>
+      </forms>
+   </config>
+
+</alfresco-config>
