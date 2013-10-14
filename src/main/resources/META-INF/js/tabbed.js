@@ -169,20 +169,6 @@ function Accordian(d, s, tc) {
     if (sel != undefined){sel.onclick();}
 }
 //accordion - end
-
-function changeHeader() {
-      var headerElements = getElementsByClassName('form-manager', document.body),
-            headerLabel = "Customer Status Report";
-      if (headerElements.length == 0) {
-         return;
-      }
-      if (formMode == "edit")
-         headerLabel = "Edit " + headerLabel;
-      else
-         document.getElementById(varFormId + "-caption-label").innerHTML = "&nbsp;";
-      document.getElementById(varId+"-dialogTitle").innerHTML = "";
-      headerElements[0].innerHTML = "<h1>" + headerLabel + "</h1>";
-} 
    
 function initAcc() {
       if (formMode == "create") {
@@ -192,8 +178,6 @@ function initAcc() {
                   document.getElementById("${id}-dialog").style.height = "100%";
             } catch (e) {}
       } 
-      
-      changeHeader();
       
       new Accordian('basic-accordian', 5, 'header_highlight');
       
